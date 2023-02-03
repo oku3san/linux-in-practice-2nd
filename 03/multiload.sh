@@ -10,6 +10,7 @@ usage() {
     所定の時間動作する負荷処理プロセスを<プロセス数>で指定した数だけ動作させて、すべての終了を待ちます。
     各プロセスにかかった時間を出力します。
     デフォルトではすべてのプロセスは1論理CPU上でだけ動作します。
+
 オプションの意味:
     -m: 各プロセスを複数CPU上で動かせるようにします。"
     exit 1
@@ -39,12 +40,10 @@ if [ $MULTICPU -eq 0 ] ; then
     taskset -p -c 0 $$ >/dev/null
 fi
 
-for i in `seq 1 $CONCURRENCY`
-do
+for ((i=0;i<CONCURRENCY;i++)) do
     time "${SCRIPT_DIR}/load.py" &
 done
 
-for i in `seq 1 $CONCURRENCY`
-do
+for ((i=0;i<CONCURRENCY;i++)) do
     wait
 done
