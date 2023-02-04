@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os/exec"
 )
 
@@ -15,7 +17,8 @@ func main() {
 	fmt.Print(string(result))
 
 	slice := make([]uint8, size)
-	fmt.Println(slice)
+	log.SetOutput(ioutil.Discard)
+	log.Println(slice)
 
 	result2, err2 := exec.Command("free", "-m").Output()
 	if err2 != nil {
