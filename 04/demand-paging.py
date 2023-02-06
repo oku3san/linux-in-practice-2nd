@@ -5,7 +5,7 @@ import time
 import datetime
 
 ALLOC_SIZE = 100 * 1024 * 1024
-ACCESS_UNIT = 100 * 1024 * 1024
+ACCESS_UNIT = 10 * 1024 * 1024
 PAGE_SIZE = 4096
 
 def show_message(msg):
@@ -20,8 +20,6 @@ input()
 
 for i in range(0, ALLOC_SIZE, PAGE_SIZE):
   memregion[i] = 0
-  print(i)
-  print(ACCESS_UNIT)
   if i%ACCESS_UNIT == 0 and i != 0:
     show_message("{} MIBアクセスしました".format(i//(1024*1024)))
     time.sleep(1)
