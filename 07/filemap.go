@@ -44,7 +44,7 @@ func main() {
 	}
 
 	replaceBytes := []byte("HELLO")
-	for i, _ := range data {
+	for i := range data {
 		data[i] = replaceBytes[i]
 	}
 }
